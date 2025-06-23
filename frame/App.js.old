@@ -1,0 +1,55 @@
+// import * as React from 'react';
+import { WebView } from 'react-native-webview';
+import { Camera } from 'expo-camera'
+
+export default function App() {
+  const [type, setType] = useState(CameraType.back);
+  const [permission, requestPermission] = Camera.useCameraPermissions();
+  const webViewRef = useRef(null);
+  const Spinner = () => (
+    <View style={styles.activityContainer}>
+      <ActivityIndicator size="large" color="#f29900" />
+    </View>
+  );
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+  useEffect(() => {
+    const backAction = () => {
+      webViewRef.current.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+  return (
+    <WebView
+      source={{ uri: 'https://schmich.github.io/instascan/'}}
+      ref={webViewRef}
+      allowsInlineMediaPlayback
+      javaScriptEnabled
+      scalesPageToFit
+      mediaPlaybackRequiresUserAction={false}
+      javaScriptEnabledAndroid
+      useWebkit
+      startInLoadingState={true}
+      renderLoading={Spinner}
+    />
+  );
+}

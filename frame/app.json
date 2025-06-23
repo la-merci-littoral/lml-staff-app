@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Ronde de l'Espoir",
+    "slug": "App",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "fr.lrde.app"
+    },
+    "web": {
+      "favicon": "./assets/icon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Autorisez $(PRODUCT_NAME) à accéder à votre caméra (pour scanner les QR codes)."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b06ef40c-6940-4d7d-88ad-d2687d38b2b5"
+      }
+    }
+  }
+}
