@@ -1,7 +1,7 @@
 import express from 'express';
 import BookingModel from '../models/bookingModel';
 import EventModel from '../models/eventModel';
-import { EntranceCheckReq, EntranceCheckRes } from 'types';
+import { EntranceCheckReq, EntranceCheckRes } from 'lml-types';
 import typia from 'typia';
 
 const router = express.Router();

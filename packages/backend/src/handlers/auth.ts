@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthReq, AuthRes } from 'types';
+import { AuthReq, AuthRes } from 'lml-types';
 import StaffModel from '../models/staffModel';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';

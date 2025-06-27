@@ -16,6 +16,6 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ],
-  "jsx": "react-native",
   "esModuleInterop": true,
+  "jsx": "react-native"
 }

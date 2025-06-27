@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { AuthRes, codes, StaffState } from 'types';
+import { AuthRes, codes, StaffState } from 'lml-types';
 import { post, RestRes } from '@/utils/rest';
 
 const useStaffStore = create<StaffState>()((set) => ({

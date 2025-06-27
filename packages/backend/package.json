@@ -19,7 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.2",
     "ts-node": "^10.9.2",
-    "types": "*",
+    "lml-types": "workspace:../types",
     "typia": "^9.3.0"
   },
   "scripts": {

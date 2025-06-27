@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera"
 import { Loader, TicketX, ShieldCheck } from "lucide-react-native";
 import { get, post } from "@/utils/rest";
-import { EntranceCheckRes, IBooking } from "../../../../types/src";
+import { EntranceCheckRes, IBooking } from "lml-types";
 
 export default function VerifyTicketPage() {
 
