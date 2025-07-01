@@ -1,11 +1,11 @@
-import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, Button, StyleSheet, TouchableOpacity, Platform } from "react-native";
 import useStaffStore from "@/stores/staffStore";
 import { Href, router } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { useEffect } from "react";
-import {  LogOut, LucideIcon, TicketCheck, UserSearch } from "lucide-react-native";
+import {  LogOut, LucideIcon, TicketCheck, UserSearch, CalendarPlus2, Undo2 } from "lucide-react-native";
 import type React from "react";
-import Menu from "@/components/menu";
+import Menu, { MenuItemProps } from "@/components/menu";
 
 export default function Index() {
 
@@ -21,20 +21,24 @@ export default function Index() {
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-                <Text style={styles.title}>Staff Panel</Text>
+                <Text style={styles.title}>Evènements</Text>
                 <Menu 
                     items={[
                         {
                             icon: TicketCheck,
-                            label: "Gestion des évènements",
-                            onPress: () => router.push("/events"),
+                            label: "Vérification de tickets",
+                            onPress: () => router.push("/events/ticket-verification"),
                         },
                         {
-                            icon: LogOut,
-                            label: "Déconnexion",
+                            icon: CalendarPlus2,
+                            label: "Ajout d'événements",
                             onPress: logout,
-                            style: { maxHeight: 130 }
-                        }
+                        },
+                        ... Platform.OS == "ios" ? [{
+                            icon: Undo2,
+                            label: "Retour",
+                            onPress: () => router.back()
+                        }] : []
                     ]}
                 />
             </View>

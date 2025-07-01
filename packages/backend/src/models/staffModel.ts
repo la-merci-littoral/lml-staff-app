@@ -1,4 +1,4 @@
-import { InternalStaffInfo } from 'types';
+import { InternalStaffInfo } from 'lml-types';
 import mongoose from "mongoose";
 
 const staffSchema = new mongoose.Schema<InternalStaffInfo>({

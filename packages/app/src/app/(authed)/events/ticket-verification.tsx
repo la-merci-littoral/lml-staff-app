@@ -1,10 +1,12 @@
 import { Colors } from "@/constants/Colors";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button, Platform } from "react-native";
 import { useState, useEffect } from "react";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera"
-import { Loader, TicketX, ShieldCheck } from "lucide-react-native";
+import { Loader, TicketX, ShieldCheck, Undo2 } from "lucide-react-native";
 import { get, post } from "@/utils/rest";
 import { EntranceCheckRes, IBooking } from "lml-types";
+import Menu from "@/components/menu";
+import { router } from "expo-router";
 
 export default function VerifyTicketPage() {
 
@@ -76,6 +78,7 @@ export default function VerifyTicketPage() {
                     barcodeScannerSettings={{ barcodeTypes: ['qr'] }}
                     onBarcodeScanned={(data) => onCodeScan(data.data)}
                     style={[styles.cameraPreview, { display: (person.booking_id ? 'none' : 'flex') }]}
+                    //style={[styles.cameraPreview]}
                 ></CameraView>
                 {person.booking_id ?
                     (validTicket ? (
@@ -109,12 +112,21 @@ export default function VerifyTicketPage() {
                             <Text style={styles.infoLabel}>En attente de scan</Text>
                         </View>
                     )}
+                    {Platform.OS == "ios" && (
+                        <Menu.Item 
+                            icon={Undo2} 
+                            label="Retour" 
+                            onPress={() => router.back()} 
+                            style={styles.backButton} 
+                            iconSize={40}
+                        />
+                    )}
             </View>
         </View>
     )
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.lapis,
         height: "100%",
@@ -135,15 +147,17 @@ export const styles = StyleSheet.create({
         flexGrow: 1,
         width: "100%",
         alignContent: "center",
-        gap: 30,
+        gap: 20,
         maxWidth: 500,
+        justifyContent: "space-between",
     },
     cameraPreview: {
         borderRadius: 25,
         borderColor: Colors.argentinian,
         borderWidth: 1,
-        height: "60%",
+        //minHeight: "30%",
         width: "100%",
+        flexGrow: 1
     },
     infoBox: {
         width: "100%",
@@ -155,8 +169,7 @@ export const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-evenly",
-        //height: "35%"
-        flexGrow: 1,
+        minHeight: "35%"
     },
     infoSection: { 
         display: "flex", 
@@ -185,5 +198,11 @@ export const styles = StyleSheet.create({
     buttonText: {
         color: Colors.pale,
         fontSize: 20
+    },
+    backButton: {
+        maxHeight: 90, 
+        flexDirection: "row",
+        fontSize: 20,
+        borderRadius: 25
     }
 })
